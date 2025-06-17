@@ -6,9 +6,9 @@ class Block:
             "color":color
             }
     def placeQueen(self):
-        self.info["index"] = True
+        self.info["isQueened"] = True
     def removeQueen(self):
-        self.info["index"] = False
+        self.info["isQueened"] = False
 
     @property
     def getColor(self):
@@ -29,14 +29,24 @@ class Block:
 
 class Grid:
     def __init__(self,filepath="level1"):
+        self.grid = []
         with open(f"levels/{filepath}.txt","r") as f:
             rows = f.readlines()
-            l = []
             for i,row_s in enumerate(rows):
                 r = []
                 for j,color in enumerate(row_s.strip("\n")):
                     r.append(Block(i,j,color))
-                l.append(r)
-        
+                self.grid.append(r)
+    @property
+    def getSize(self):
+        return len(self.grid)
+    
+    def setQueenAt(self,r:int,c:int):
+        self.grid[r][c].placeQueen()
 
-        print(l)
+    def printGrid(self):
+        for r in self.grid:
+            for c in r:
+                if c.isQueened: print("*",end=" ")
+                else: print(c.getColor,end=" ")
+            print()

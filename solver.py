@@ -1,3 +1,7 @@
 from grid import Grid
 
-level1 = Grid()
+game = Grid()
+
+game.setQueenAt(0,0)
+
+game.printGrid()
