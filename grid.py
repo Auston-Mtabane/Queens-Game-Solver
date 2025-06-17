@@ -1,5 +1,6 @@
 class Block:
     def __init__(self,r:int,c:int,color:str):
+        self.colorCode = {"p":"\033[0;35m","o":"\033[0;33m","g":"\033[1;32m","G":"\033[1;30m","b":"\033[1;34m","r":"\033[1;31m"}
         self.info = {
             "isQueened":False,
             "index":(r,c),
@@ -23,7 +24,7 @@ class Block:
         return self.info["isQueened"]
     
     def __repr__(self):
-        return f"{self.getColor}, {self.getIndex}, Queen:{self.isQueened}\n"
+        return f"{self.colorCode[self.getColor]}{"Q" if self.isQueened else "■"}\033[0m"
 
 
 
@@ -47,6 +48,5 @@ class Grid:
     def printGrid(self):
         for r in self.grid:
             for c in r:
-                if c.isQueened: print("*",end=" ")
-                else: print(c.getColor,end=" ")
+                print(c,end=" ")
             print()
