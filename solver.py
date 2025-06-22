@@ -2,7 +2,9 @@ from grid import Grid
 
 game = Grid()
 
-game.setQueenAt(5,2)
-game.setQueenAt(4,3)
+for r in range(6):
+    for c in range(6):
+        game.setQueenAt(r,c)
+
 
 game.printGrid()
