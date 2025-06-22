@@ -2,11 +2,11 @@ from typing import List
 
 class Block:
     def __init__(self,r:int,c:int,color:str):
-        self.colorCode = {"p":"\033[0;35m","o":"\033[0;33m","g":"\033[1;32m","G":"\033[1;30m","b":"\033[1;34m","r":"\033[1;31m"}
+        print(color)
         self.info = {
             "isQueened":False,
             "index":(r,c),
-            "color":color
+            "colorRGB":[int(n) for n in color.split(",")]
             }
     def placeQueen(self):
         self.info["isQueened"] = True
@@ -15,7 +15,7 @@ class Block:
 
     @property
     def getColor(self):
-        return self.info["color"]
+        return self.info["colorRGB"]
     
     @property
     def getIndex(self)->tuple:
@@ -26,7 +26,8 @@ class Block:
         return self.info["isQueened"]
     
     def __repr__(self):
-        return f"{self.colorCode[self.getColor]}{"Q" if self.isQueened else "■"}\033[0m"
+        r,g,b = self.info["colorRGB"]
+        return f"\033[38;2;{r};{g};{b}m{"Q" if self.isQueened else "■"}\033[0m"
 
 class ColorSection:
     def __init__(self,section:List[Block]):
@@ -43,7 +44,7 @@ class Grid:
             rows = f.readlines()
             for i,row_s in enumerate(rows):
                 r = []
-                for j,color in enumerate(row_s.strip("\n")):
+                for j,color in enumerate(row_s.strip("\n").split(" ")):
                     r.append(Block(i,j,color))
                 self.grid.append(r)
     @property
