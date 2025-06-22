@@ -44,7 +44,7 @@ class Grid:
             rows = f.readlines()
             for i,row_s in enumerate(rows):
                 r = []
-                for j,color in enumerate(row_s.strip("\n").split(" ")):
+                for j,color in enumerate(row_s.strip("\n").strip(" ").split(" ")):
                     r.append(Block(i,j,color))
                 self.grid.append(r)
     @property

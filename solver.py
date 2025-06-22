@@ -1,9 +1,9 @@
 from grid import Grid
 
-game = Grid()
+game = Grid("level2")
 
-for r in range(6):
-    for c in range(6):
+for r in range(game.getSize):
+    for c in range(game.getSize):
         game.setQueenAt(r,c)
 
 
