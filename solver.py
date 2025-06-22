@@ -14,6 +14,7 @@ def gridToTurtle(grid:Grid):
             
             r,g,b = b.getColor
             t.fillcolor(r,g,b)
+            t.pensize(3)
             t.teleport(-half+50*j,half -50*i)
             t.begin_fill()
             for _ in range(4):
