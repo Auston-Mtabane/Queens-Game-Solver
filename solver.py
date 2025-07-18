@@ -33,6 +33,7 @@ for r in range(game.getSize):
     for c in range(game.getSize):
         game.setQueenAt(r,c)
 
-gridToTurtle(game)
+# gridToTurtle(game)
+   
 
 game.printGrid()
